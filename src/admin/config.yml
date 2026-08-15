@@ -1,0 +1,41 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Nơi lưu ảnh khi bạn upload trực tiếp qua giao diện quản trị
+media_folder: "src/images"
+public_folder: "/images"
+
+collections:
+  - name: "trips"
+    label: "Chuyến đi"
+    label_singular: "Chuyến đi"
+    folder: "src/trips"
+    create: true
+    delete: true
+    slug: "{{slug}}"
+    fields:
+      - { label: "Tiêu đề chuyến đi", name: "title", widget: "string" }
+      - { label: "Nhãn thời gian hiển thị (vd: Tháng 06/2023)", name: "date_label", widget: "string" }
+      - { label: "Ngày (dùng để sắp xếp mới -> cũ)", name: "date_sort", widget: "datetime", format: "YYYY-MM-DD" }
+      - { label: "Mô tả ngắn", name: "description", widget: "text" }
+      - label: "Ảnh trong chuyến đi"
+        name: "images"
+        widget: "list"
+        fields:
+          - { label: "Ảnh", name: "src", widget: "image" }
+          - { label: "Chú thích", name: "caption", widget: "string", required: false }
+
+  - name: "site"
+    label: "Thông tin trang cá nhân"
+    files:
+      - label: "Cấu hình chung"
+        name: "settings"
+        file: "src/_data/site.json"
+        fields:
+          - { label: "Họ tên", name: "name", widget: "string" }
+          - { label: "Tiểu sử ngắn", name: "bio", widget: "text" }
+          - { label: "Ảnh đại diện", name: "avatar", widget: "image" }
+          - { label: "Facebook URL", name: "facebook", widget: "string", required: false }
+          - { label: "Instagram URL", name: "instagram", widget: "string", required: false }
+          - { label: "LinkedIn URL", name: "linkedin", widget: "string", required: false }

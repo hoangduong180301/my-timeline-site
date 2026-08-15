@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ site.name }} — My Personal Space & Journey</title>
+  <meta name="description" content="{{ site.bio }}">
+
+  <!-- Bỏ 2 dòng dưới nếu sau này bạn MUỐN cho Google index trang này -->
+  <meta name="robots" content="noindex, nofollow">
+
+  <!-- Open Graph để share lên Facebook/Instagram/Zalo đẹp hơn -->
+  <meta property="og:title" content="{{ site.name }}">
+  <meta property="og:description" content="{{ site.bio }}">
+  <meta property="og:image" content="{{ site.avatar }}">
+
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="hero">
+    <img class="avatar" src="{{ site.avatar }}" alt="Ảnh đại diện của {{ site.name }}">
+    <h1>{{ site.name }}</h1>
+    <p class="bio">{{ site.bio }}</p>
+    <nav class="social-links">
+      {% if site.facebook %}<a href="{{ site.facebook }}" target="_blank" rel="noopener">Facebook</a>{% endif %}
+      {% if site.instagram %}<a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
+      {% if site.linkedin %}<a href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>{% endif %}
+    </nav>
+  </header>
+
+  <main>
+    {{ content | safe }}
+  </main>
+
+  <footer>
+    <p>&copy; <span id="year"></span> {{ site.name }}</p>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

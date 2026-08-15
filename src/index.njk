@@ -1,0 +1,29 @@
+---
+layout: base.njk
+---
+<section class="timeline-intro">
+  <p class="eyebrow">Ký Ức & Những Chuyến Đi</p>
+  <h2>My Timeline</h2>
+  <p>Nhấp vào từng bức ảnh để xem lớn hơn.</p>
+</section>
+
+<div class="timeline">
+  {% for trip in collections.trips %}
+  <article class="trip">
+    <p class="trip-date">{{ trip.data.date_label }}</p>
+    <h3>{{ trip.data.title }}</h3>
+    <p class="trip-desc">{{ trip.data.description }}</p>
+
+    {% if trip.data.images.length %}
+    <div class="trip-gallery">
+      {% for img in trip.data.images %}
+      <figure>
+        <img src="{{ img.src }}" alt="{{ img.caption }}" loading="lazy">
+        {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
+      </figure>
+      {% endfor %}
+    </div>
+    {% endif %}
+  </article>
+  {% endfor %}
+</div>
