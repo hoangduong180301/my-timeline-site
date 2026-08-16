@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: hoangduong180301/my-timeline-site
+  repo: ten-tai-khoan/ten-repo # ⚠️ đổi thành đúng repo của bạn, ví dụ hoangduong180301/my-timeline-site
   branch: main
 
 # Nơi lưu ảnh khi bạn upload trực tiếp qua giao diện quản trị
@@ -20,11 +20,21 @@ collections:
       - { label: "Nhãn thời gian hiển thị (vd: Tháng 06/2023)", name: "date_label", widget: "string" }
       - { label: "Ngày (dùng để sắp xếp mới -> cũ)", name: "date_sort", widget: "datetime", format: "YYYY-MM-DD" }
       - { label: "Mô tả ngắn", name: "description", widget: "text" }
-      - label: "Ảnh trong chuyến đi"
+      - label: "Ảnh / Video trong chuyến đi"
         name: "images"
         widget: "list"
         fields:
-          - { label: "Ảnh", name: "src", widget: "image" }
+          - label: "Loại"
+            name: "type"
+            widget: "select"
+            options: ["Ảnh", "Video YouTube"]
+            default: "Ảnh"
+          - { label: "Ảnh (bỏ trống nếu Loại = Video)", name: "src", widget: "image", required: false }
+          - label: "ID video YouTube (bỏ trống nếu Loại = Ảnh)"
+            name: "youtube_id"
+            widget: "string"
+            required: false
+            hint: "Chỉ dán phần ID sau '?v=' trong link YouTube. Ví dụ link https://youtube.com/watch?v=dQw4w9WgXcQ thì ID là dQw4w9WgXcQ"
           - { label: "Chú thích", name: "caption", widget: "string", required: false }
 
   - name: "site"
