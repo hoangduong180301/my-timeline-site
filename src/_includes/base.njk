@@ -14,30 +14,16 @@
   <meta property="og:description" content="{{ site.bio }}">
   <meta property="og:image" content="{{ site.avatar }}">
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
   <header class="hero">
-    <img class="avatar" src="{{ site.avatar }}" alt="Ảnh đại diện của {{ site.name }}">
+    <div class="avatar-wrap">
+      <img class="avatar" src="{{ site.avatar }}" alt="Ảnh đại diện của {{ site.name }}">
+    </div>
     <h1>{{ site.name }}</h1>
     <p class="bio">{{ site.bio }}</p>
     <nav class="social-links">
-      {% if site.facebook %}<a href="{{ site.facebook }}" target="_blank" rel="noopener">Facebook</a>{% endif %}
-      {% if site.instagram %}<a href="{{ site.instagram }}" target="_blank" rel="noopener">Instagram</a>{% endif %}
-      {% if site.linkedin %}<a href="{{ site.linkedin }}" target="_blank" rel="noopener">LinkedIn</a>{% endif %}
-    </nav>
-  </header>
-
-  <main>
-    {{ content | safe }}
-  </main>
-
-  <footer>
-    <p>&copy; <span id="year"></span> {{ site.name }}</p>
-  </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
-</body>
-</html>
+      {% if site.facebook %}<a href="{{
