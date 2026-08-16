@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: ten-tai-khoan/ten-repo # ⚠️ đổi thành đúng repo của bạn, ví dụ hoangduong180301/my-timeline-site
+  repo: hoangduong180301/my-timeline-site # ⚠️ đổi thành đúng repo của bạn, ví dụ hoangduong180301/my-timeline-site
   branch: main
 
 # Nơi lưu ảnh khi bạn upload trực tiếp qua giao diện quản trị
