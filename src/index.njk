@@ -9,19 +9,50 @@ layout: base.njk
 
 <div class="timeline">
   {% for trip in collections.trips %}
-  <article class="trip">
-    <p class="trip-date">{{ trip.data.date_label }}</p>
-    <h3>{{ trip.data.title }}</h3>
-    <p class="trip-desc">{{ trip.data.description }}</p>
+  <article class="trip{% if loop.index0 % 2 == 1 %} reverse{% endif %}">
+    <div class="trip-dot"></div>
+
+    <div class="trip-text">
+      <p class="trip-date">{{ trip.data.date_label }}</p>
+      <h3>{{ trip.data.title }}</h3>
+      <p class="trip-desc">{{ trip.data.description }}</p>
+    </div>
 
     {% if trip.data.images.length %}
-    <div class="trip-gallery">
-      {% for img in trip.data.images %}
-      <figure>
-        <img src="{{ img.src }}" alt="{{ img.caption }}" loading="lazy">
-        {% if img.caption %}<figcaption>{{ img.caption }}</figcaption>{% endif %}
-      </figure>
+    <div class="trip-visual">
+      {% for item in trip.data.images %}
+        {% if loop.index0 == 0 %}
+        <div class="polaroid-main">
+          {% if item.type == "Video YouTube" %}
+          <a class="video-thumb" href="https://www.youtube.com/watch?v={{ item.youtube_id }}" target="_blank" rel="noopener">
+            <img src="https://img.youtube.com/vi/{{ item.youtube_id }}/hqdefault.jpg" alt="{{ item.caption }}" loading="lazy">
+            <span class="play-icon">▶</span>
+          </a>
+          {% else %}
+          <img src="{{ item.src }}" alt="{{ item.caption }}" loading="lazy">
+          {% endif %}
+        </div>
+        {% endif %}
       {% endfor %}
+
+      {% if trip.data.images.length > 1 %}
+      <div class="polaroid-mini-row">
+        {% for item in trip.data.images %}
+          {% if loop.index0 > 0 %}
+          <div class="polaroid-mini">
+            {% if item.type == "Video YouTube" %}
+            <a class="video-thumb" href="https://www.youtube.com/watch?v={{ item.youtube_id }}" target="_blank" rel="noopener">
+              <img src="https://img.youtube.com/vi/{{ item.youtube_id }}/hqdefault.jpg" alt="{{ item.caption }}" loading="lazy">
+              <span class="play-icon">▶</span>
+            </a>
+            {% else %}
+            <img src="{{ item.src }}" alt="{{ item.caption }}" loading="lazy">
+            {% endif %}
+          </div>
+          {% endif %}
+        {% endfor %}
+      </div>
+      {% endif %}
     </div>
     {% endif %}
   </article>
